@@ -152,5 +152,8 @@ module Spotlight
 
     # make blacklight configuration play nice with bootstrap_form
     Blacklight::OpenStructWithHashAccess.send(:extend, ActiveModel::Translation)
+
+    # Configuration defaults
+    Spotlight::Engine.config.index_writer = Spotlight::Indexer::LocalWriter
   end
 end

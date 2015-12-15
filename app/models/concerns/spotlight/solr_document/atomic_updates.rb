@@ -6,7 +6,9 @@ module Spotlight
       def reindex
         data = hash_for_solr_update(to_solr)
 
-        blacklight_solr.update params: { commitWithin: 500 }, data: data.to_json, headers: { 'Content-Type' => 'application/json' } unless data.empty?
+        return if data.empty?
+
+        Spotlight.index_writer.update params: { commitWithin: 500 }, data: data.to_json, headers: { 'Content-Type' => 'application/json' }
       end
 
       private
