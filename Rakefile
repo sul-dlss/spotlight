@@ -59,7 +59,7 @@ namespace :spotlight do
       solr.with_collection(name: 'blacklight-core', dir: File.join(File.expand_path(File.dirname(__FILE__)), 'solr_conf', 'conf')) do
         within_test_app do
           unless File.exist? '.initialized'
-            system 'bundle exec rake spotlight:initialize'
+            system 'bundle exec rake spotlight:admin'
             system 'bundle exec rake spotlight_test:solr:seed'
             File.open('.initialized', 'w') {}
           end

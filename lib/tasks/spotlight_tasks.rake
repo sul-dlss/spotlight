@@ -1,17 +1,11 @@
 namespace :spotlight do
-  desc 'Create an initial admin user and default exhibit'
-  task initialize: :environment do
-    puts 'Creating an initial admin user.'
-    u = prompt_to_create_user
+  desc 'Create an application admin or add that role to a user'
+  task admin: :environment do
+    puts 'Creating an admin user.'
 
+    u = prompt_to_create_user
     Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: 'admin')
     puts 'User created.'
-  end
-
-  desc 'Add application-wide admin privileges to a user'
-  task admin: :environment do
-    u = prompt_to_create_user
-    Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: 'admin')
   end
 
   desc 'Create a new exhibit'
