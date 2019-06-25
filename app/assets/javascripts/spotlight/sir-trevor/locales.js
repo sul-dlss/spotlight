@@ -105,6 +105,11 @@ SirTrevor.Locales.en.blocks = $.extend(SirTrevor.Locales.en.blocks, {
     }
   },
 
+  wysiwyg: {
+    title: "Wysiwyg",
+    description: "This widget allows for rendering content from a Wysiwyg editor."
+  },
+
   group: {
     undefined: "Standard widgets",
     items: "Exhibit item widgets"

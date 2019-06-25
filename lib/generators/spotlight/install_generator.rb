@@ -142,5 +142,9 @@ module Spotlight
     def add_translations
       copy_file 'config/initializers/translation.rb'
     end
+
+    def tinymce_rails
+      gem 'tinymce-rails'
+    end
   end
 end

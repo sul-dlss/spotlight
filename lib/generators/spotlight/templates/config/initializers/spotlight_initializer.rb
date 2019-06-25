@@ -71,7 +71,7 @@
 
 # ==> Sir Trevor Widget Configuration
 # Spotlight::Engine.config.sir_trevor_widgets = %w(
-#   Heading Text List Quote Iframe Video Oembed Rule UploadedItems Browse
+#   Heading Text Wysiwyg List Quote Iframe Video Oembed Rule UploadedItems Browse
 #   FeaturedPages SolrDocuments SolrDocumentsCarousel SolrDocumentsEmbed
 #   SolrDocumentsFeatures SolrDocumentsGrid SearchResults
 # )
