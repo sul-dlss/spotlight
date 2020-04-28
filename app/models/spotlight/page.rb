@@ -7,7 +7,7 @@ module Spotlight
     MAX_PAGES = Spotlight::Engine.config.max_pages
 
     extend FriendlyId
-    friendly_id :title, use: %i[slugged scoped finders history], scope: %i[exhibit locale]
+    friendly_id :title, use: %i[slugged scoped finders history], scope: %i[exhibit locale type]
 
     belongs_to :exhibit, touch: true
     belongs_to :created_by, class_name: Spotlight::Engine.config.user_class, optional: true

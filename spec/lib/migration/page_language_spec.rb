@@ -19,7 +19,7 @@ RSpec.describe Migration::PageLanguage do
       expect(slug.scope).not_to include(',locale:en')
       subject.run
       slug.reload
-      expect(slug.scope).to eq "exhibit_id:#{page.exhibit.id},locale:en"
+      expect(slug.scope).to include ',locale:en'
     end
   end
 end

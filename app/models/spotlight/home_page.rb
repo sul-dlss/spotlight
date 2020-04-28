@@ -5,7 +5,7 @@ module Spotlight
   # Exhibit home page
   class HomePage < Spotlight::Page
     extend FriendlyId
-    friendly_id :title, use: %i[slugged scoped finders], scope: %i[exhibit locale]
+    friendly_id :title, use: %i[slugged scoped finders], scope: %i[exhibit locale type]
 
     before_save :publish
     before_create :default_content

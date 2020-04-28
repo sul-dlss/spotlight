@@ -137,6 +137,16 @@ describe Spotlight::Page, type: :model do
         expect(page.slug).to eq 'xyz'
       end
     end
+
+    context 'different types of pages with the same slug' do
+      it 'are allowed' do
+        FactoryBot.create(:feature_page, exhibit: exhibit, title: 'MyCustomPage')
+
+        expect do
+          FactoryBot.create(:about_page, exhibit: exhibit, title: 'MyCustomPage')
+        end.not_to raise_error
+      end
+    end
   end
 
   describe 'thumbnail_image_url' do
