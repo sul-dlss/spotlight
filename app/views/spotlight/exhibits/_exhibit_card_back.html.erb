@@ -18,6 +18,15 @@
   </p>
 <% end %>
 
+<%
+  # The inclusion of the hidden `<div>` addresses an accessibility issue where a link label should not be used with multiple link
+  # locations.  In this case, the label is 'Visit exhibit' and it is used for all links leading to the various exhibits.
+  #
+  # Using just the `exhibit.id` is not sufficient to create a unique id as this code is used in each tab (i.e. Published exhibits,
+  # Unpublished exhibits, and Your exhibits).  To ensure the ID is unique across tabs, it is appended with a random hex string.
+  label_id = "visit-exhibit-#{exhibit.id}-#{SecureRandom.hex(8)}"
+%>
+<div class="hidden" id="<%= label_id %>"><%= "#{t(:'.visit_exhibit')} #{exhibit.title}" %></div>
 <div class="visit-exhibit center-btn">
-  <%= link_to t(:'.visit_exhibit'), exhibit, class: "btn btn-primary", role: "button" %>
+  <%= link_to t(:'.visit_exhibit'), exhibit, class: "btn btn-primary", role: "button", "aria-labelledby" => "#{label_id}" %>
 </div>
