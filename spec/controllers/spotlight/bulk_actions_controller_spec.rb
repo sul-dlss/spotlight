@@ -4,16 +4,6 @@ describe Spotlight::BulkActionsController, type: :controller do
   routes { Spotlight::Engine.routes }
   let(:exhibit) { FactoryBot.create(:skinny_exhibit) }
 
-  # rubocop:disable RSpec/BeforeAfterAll
-  before(:all) do
-    ActiveJob::Base.queue_adapter = :test
-  end
-
-  after(:all) do
-    ActiveJob::Base.queue_adapter = :inline
-  end
-  # rubocop:enable RSpec/BeforeAfterAll
-
   describe 'when the user is not authorized' do
     before do
       sign_in FactoryBot.create(:exhibit_visitor)

@@ -6,7 +6,7 @@ require 'devise'
 require 'engine_cart'
 EngineCart.load_application!
 
-Internal::Application.config.active_job.queue_adapter = :inline
+ActiveJob::Base.queue_adapter = :test
 
 require 'rails-controller-testing'
 require 'rspec/collection_matchers'
