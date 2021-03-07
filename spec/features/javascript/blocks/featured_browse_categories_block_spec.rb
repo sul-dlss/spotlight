@@ -15,17 +15,16 @@ describe 'Featured Browse Category Block', type: :feature, js: true do
     add_widget 'browse'
   end
 
-  pending 'allows a curator to select from existing browse categories' do
-    pending('Prefetched autocomplete does not work the same way as solr-backed autocompletes')
+  it 'allows a curator to select from existing browse categories' do
     check 'Include item counts?'
 
-    fill_in_typeahead_field with: 'Title1'
+    fill_in_prefetched_typeahead_field with: 'Title1', wait_for: '[data-type="browse"] [data-browse-fetched]'
 
     within(:css, '.card') do
       uncheck 'Display?'
     end
 
-    fill_in_typeahead_field with: 'Title2'
+    fill_in_prefetched_typeahead_field with: 'Title2', wait_for: '[data-type="browse"] [data-browse-fetched]'
 
     save_page
 
@@ -35,10 +34,9 @@ describe 'Featured Browse Category Block', type: :feature, js: true do
     expect(page).to have_css('.item-count', text: /\d+ items/i)
   end
 
-  pending 'allows the curator to omit document counts' do
-    pending('Prefetched autocomplete does not work the same way as solr-backed autocompletes')
+  it 'allows the curator to omit document counts' do
     uncheck 'Include item counts?'
-    fill_in_typeahead_field with: 'Title1'
+    fill_in_prefetched_typeahead_field with: 'Title1', wait_for: '[data-type="browse"] [data-browse-fetched]'
     save_page
 
     expect(page).not_to have_css('.item-count', text: /\d+ items/i)

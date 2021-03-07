@@ -13,10 +13,16 @@ SirTrevor.Blocks.Browse = (function(){
     autocomplete_template: function() { return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{#if thumbnail_image_url}}<div class="document-thumbnail"><img class="img-thumbnail" src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{full_title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>' },
 
     bloodhoundOptions: function() {
+      var that = this;
       return {
         prefetch: {
           url: this.autocomplete_url(),
-          ttl: 0
+          ttl: 0,
+          filter: function(response) {
+            // Let the dom know that the response has been returned
+            $(that.inner).attr('data-browse-fetched', true);
+            return response;
+          }
         }
       };
     },
