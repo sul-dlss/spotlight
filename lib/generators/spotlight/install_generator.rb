@@ -167,5 +167,34 @@ module Spotlight
     def add_translations
       copy_file 'config/initializers/translation.rb'
     end
+
+    def configure_queue
+      insert_into_file 'config/application.rb', after: "< Rails::Application\n" do
+        <<-EOF
+        config.active_job.queue_adapter = ENV["RAILS_QUEUE"].to_sym || :sidekiq
+        EOF
+      end
+    end
+    def configure_logging
+      insert_into_file 'config/application.rb', after: "< Rails::Application\n" do
+        <<-EOF
+        # Logging
+        if ENV["RAILS_LOG_TO_STDOUT"].present?
+          config.log_level = :debug
+          config.log_formatter = ::Logger::Formatter.new
+          # log to stdout
+          logger               = ActiveSupport::Logger.new(STDOUT)
+          logger.formatter     = config.log_formatter
+          config.logger        = ActiveSupport::TaggedLogging.new(logger)
+          # Print deprecation notices to the Rails logger.
+          config.active_support.deprecation = :log
+          # Raise an error on page load if there are pending migrations.
+          config.active_record.migration_error = :page_load
+          # Highlight code that triggered database queries in logs.
+          config.active_record.verbose_query_logs = true
+        end
+        EOF
+      end
+    end
   end
 end

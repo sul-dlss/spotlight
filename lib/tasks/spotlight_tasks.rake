@@ -16,6 +16,18 @@ namespace :spotlight do
     Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: 'admin')
   end
 
+  task seed_admin_user: [:environment] do
+    email = "admin@localhost"
+    password = "testing"
+
+    u = Spotlight::Engine.user_class.find_or_create_by!(email: email) do |user|
+      user.password = password
+    end
+    Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: "admin")
+
+    puts "Admin user created with email: #{email} (password: '#{password}')"
+  end
+
   desc 'Create a new exhibit'
   task exhibit: :environment do
     print 'Exhibit title: '
@@ -139,6 +151,14 @@ namespace :spotlight do
     exhibits.find_each do |e|
       puts " == Reindexing #{e.title} =="
       e.reindex_later
+    end
+  end
+
+  task db_ready: :environment do
+    if I18n::Backend::ActiveRecord::Translation.table_exists?
+      exit 0
+    else
+      exit 1
     end
   end
 end
