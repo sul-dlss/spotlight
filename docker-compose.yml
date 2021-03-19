@@ -48,7 +48,7 @@ services:
       - spotlight
 
   solr:
-    image: bitnami/solr:8.8.1
+    image: bitnami/solr:8.8.1-debian-10-r22
     env_file:
       - .env
     ports:
