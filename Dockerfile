@@ -15,6 +15,7 @@ RUN apk --no-cache upgrade && \
   libxslt-dev \
   nodejs-current \
   postgresql-dev \
+  shared-mime-info \
   sqlite-dev \
   tini \
   tzdata \

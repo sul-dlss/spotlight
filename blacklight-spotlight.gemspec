@@ -44,6 +44,7 @@ these collections.)
   s.add_dependency 'iiif-presentation'
   s.add_dependency 'leaflet-rails'
   s.add_dependency 'legato'
+  s.add_dependency 'mimemagic', '0.3.8'
   s.add_dependency 'mini_magick'
   s.add_dependency 'nokogiri'
   s.add_dependency 'oauth2'
