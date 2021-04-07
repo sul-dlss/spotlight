@@ -56,6 +56,7 @@ these collections.)
   s.add_dependency 'riiif', '~> 2.0'
   s.add_dependency 'roar', '~> 1.1'
   s.add_dependency 'roar-rails'
+  s.add_dependency 'sidekiq'
   s.add_dependency 'signet'
   s.add_dependency 'sir_trevor_rails', '>= 0.6.1'
   s.add_dependency 'sprockets', '>= 3'
