@@ -17,13 +17,13 @@ namespace :spotlight do
   end
 
   task seed_admin_user: [:environment] do
-    email = "admin@localhost"
-    password = "testing"
+    email = 'admin@localhost'
+    password = 'testing'
 
     u = Spotlight::Engine.user_class.find_or_create_by!(email: email) do |user|
       user.password = password
     end
-    Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: "admin")
+    Spotlight::Role.create(user: u, resource: Spotlight::Site.instance, role: 'admin')
 
     puts "Admin user created with email: #{email} (password: '#{password}')"
   end

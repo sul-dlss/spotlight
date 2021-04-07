@@ -32,7 +32,7 @@ module Spotlight
         define_method(:"translated_#{attr_name}") do |default: [], **options|
           default = Array.wrap(default)
           default.prepend(attr_translation(attr_name)) if I18n.locale == I18n.default_locale
-          I18n.translate(attr_name, scope: slug, default: default, **options).presence
+          I18n.t(attr_name, scope: slug, default: default, **options).presence
         end
       end
     end

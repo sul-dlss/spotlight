@@ -21,7 +21,7 @@ module Spotlight
     # setting user key causes the user to get set
     def user_key=(key)
       @user_key = key
-      self.user ||= Spotlight::Engine.user_class.find_by_user_key(key)
+      self.user ||= Spotlight::Engine.user_class.find_by(user_key: key)
       self.user ||= Spotlight::Engine.user_class.invite!(email: user_key, skip_invitation: true)
       user.user_key = key
     end

@@ -19,11 +19,7 @@ module Spotlight
     end
 
     def label_or_default
-      if label.present?
-        label
-      else
-        default_label
-      end
+      label.presence || default_label
     end
 
     def default_label(**options)

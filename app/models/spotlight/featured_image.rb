@@ -36,7 +36,7 @@ module Spotlight
     attr_accessor :upload_id
 
     def iiif_url
-      return unless iiif_service_base.present?
+      return if iiif_service_base.blank?
 
       [iiif_service_base, iiif_region || 'full', image_size.join(','), '0', 'default.jpg'].join('/')
     end

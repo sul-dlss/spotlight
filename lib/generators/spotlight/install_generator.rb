@@ -177,6 +177,7 @@ module Spotlight
         EOF
       end
     end
+
     def configure_logging
       insert_into_file 'config/application.rb', after: "< Rails::Application\n" do
         <<-EOF

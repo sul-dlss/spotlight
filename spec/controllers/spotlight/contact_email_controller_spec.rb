@@ -7,7 +7,7 @@ describe Spotlight::ContactEmailController, type: :controller do
   context 'when not logged in' do
     describe 'DELETE destroy' do
       it 'redirects to the login page' do
-        # note about odd behavior: it was discovered in testing that if format: :json is explicitly specified here, the user is redirected
+        # NOTE: about odd behavior: it was discovered in testing that if format: :json is explicitly specified here, the user is redirected
         # to login on rails 4, but gets a 401 on rails 5.  we suspect differing CanCan behavior, but didn't investigate in depth.
         delete :destroy, params: { id: contact_email, exhibit_id: contact_email.exhibit }
         # custom logic in ApplicationController redirects user to app login page on CanCan::AccessDenied if user can't read current exhibit

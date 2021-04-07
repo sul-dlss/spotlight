@@ -70,7 +70,7 @@ module Spotlight
 
       html_options ||= {}
 
-      content_tag(:li, class: 'nav-item') do
+      tag.li(class: 'nav-item') do
         if block_given?
           link_to(options, nav_link_html_options(options, html_options), &block)
         else

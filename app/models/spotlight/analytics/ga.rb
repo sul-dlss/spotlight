@@ -31,11 +31,11 @@ module Spotlight
 
       def user(scope = 'https://www.googleapis.com/auth/analytics.readonly')
         @user ||= begin
-                    Legato::User.new(oauth_token(scope))
-                  rescue StandardError => e
-                    Rails.logger.info(e)
-                    nil
-                  end
+          Legato::User.new(oauth_token(scope))
+        rescue StandardError => e
+          Rails.logger.info(e)
+          nil
+        end
       end
 
       def site

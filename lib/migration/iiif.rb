@@ -101,7 +101,7 @@ module Migration
     end
 
     def coordinates(image)
-      return unless image.image_crop_x.present?
+      return if image.image_crop_x.blank?
 
       [image.image_crop_x, image.image_crop_y, image.image_crop_w, image.image_crop_h].join(',')
     end

@@ -170,7 +170,7 @@ module Spotlight
     def solr_document_params
       params.require(:solr_document).permit(:exhibit_tag_list,
                                             uploaded_resource: [:url],
-                                            sidecar: [:public, data: [editable_solr_document_params]])
+                                            sidecar: [:public, { data: [editable_solr_document_params] }])
     end
 
     def editable_solr_document_params

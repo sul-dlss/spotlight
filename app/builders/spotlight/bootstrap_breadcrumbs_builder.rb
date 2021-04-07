@@ -15,7 +15,7 @@ module Spotlight
     def render
       return '' if @elements.blank?
 
-      @context.content_tag(:ul, class: 'breadcrumb') do
+      @context.tag.ul(class: 'breadcrumb') do
         safe_join(@elements.uniq.map { |e| render_element(e) })
       end
     end
@@ -25,7 +25,7 @@ module Spotlight
 
       html_class = 'active' if current
 
-      @context.content_tag(:li, class: "breadcrumb-item #{html_class}") do
+      @context.tag.li(class: "breadcrumb-item #{html_class}") do
         @context.link_to_unless(current, element_label(element), compute_path(element), element.options&.except(:current))
       end
     end
@@ -33,7 +33,7 @@ module Spotlight
     private
 
     def element_label(element)
-      @context.content_tag(:span, class: 'truncated-value') { compute_name(element) }
+      @context.tag.span(class: 'truncated-value') { compute_name(element) }
     end
   end
 end

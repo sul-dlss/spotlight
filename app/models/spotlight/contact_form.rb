@@ -8,7 +8,7 @@ module Spotlight
 
     attr_accessor :current_exhibit, :name, :email, Spotlight::Engine.config.spambot_honeypot_email_field, :message, :current_url, :request
 
-    validates :email, format: { with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i }
+    validates :email, format: { with: /\A([\w.%+\-]+)@([\w\-]+\.)+(\w{2,})\z/i }
 
     # the spambot_honeypot_email_field field is intended to be hidden visually from the user,
     # in hope that a spam bot filling out the form will enter a value, whereas a human with a
