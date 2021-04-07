@@ -173,7 +173,7 @@ module Spotlight
     def configure_queue
       insert_into_file 'config/application.rb', after: "< Rails::Application\n" do
         <<-EOF
-        config.active_job.queue_adapter = ENV["RAILS_QUEUE"].to_sym || :sidekiq
+        config.active_job.queue_adapter = ENV["RAILS_QUEUE"]&.to_sym || :sidekiq
         EOF
       end
     end
