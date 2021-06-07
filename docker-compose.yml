@@ -55,7 +55,7 @@ services:
       - 8983:8983
     volumes:
       - spotlight_solr:/opt/solr/server/solr
-      - ./lib/generators/spotlight/templates/solr/config:/opt/bitnami/solr/server/solr/configsets/_default
+      - ./lib/generators/spotlight/templates/solr/config:/opt/custom/spotlightset
     networks:
       - spotlight
 
