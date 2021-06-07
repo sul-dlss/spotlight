@@ -57,20 +57,20 @@ module Spotlight
 
     def response
       @response ||= begin
-                      Spotlight::Resources::IiifService.http_client.get(iiif_manifest_url).body
-                    rescue Faraday::Error => e
-                      Rails.logger.warn("#{self.class.name} failed to fetch #{iiif_manifest_url} with: #{e}")
-                      '{}'
-                    end
+        Spotlight::Resources::IiifService.http_client.get(iiif_manifest_url).body
+      rescue Faraday::Error => e
+        Rails.logger.warn("#{self.class.name} failed to fetch #{iiif_manifest_url} with: #{e}")
+        '{}'
+      end
     end
 
     def manifest
       @manifest ||= begin
-                      JSON.parse(response)
-                    rescue JSON::ParserError => e
-                      Rails.logger.warn("#{self.class.name} failed to parse #{iiif_manifest_url} with: #{e}")
-                      {}
-                    end
+        JSON.parse(response)
+      rescue JSON::ParserError => e
+        Rails.logger.warn("#{self.class.name} failed to parse #{iiif_manifest_url} with: #{e}")
+        {}
+      end
     end
 
     class ManifestError < RuntimeError; end

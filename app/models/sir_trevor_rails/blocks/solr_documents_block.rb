@@ -25,7 +25,7 @@ module SirTrevorRails
 
       def documents
         @documents ||= begin
-          doc_ids = items.map { |v| v[:id] }
+          doc_ids = items.pluck(:id)
           _, documents = solr_helper.controller.send(:search_service).fetch(doc_ids)
           documents
         end
@@ -66,12 +66,12 @@ module SirTrevorRails
 
       def primary_caption_field
         val = send(:'primary-caption-field')
-        val unless val.blank?
+        val.presence
       end
 
       def secondary_caption_field
         val = send(:'secondary-caption-field')
-        val unless val.blank?
+        val.presence
       end
     end
   end

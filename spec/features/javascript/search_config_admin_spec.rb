@@ -135,6 +135,6 @@ describe 'Search Configuration Administration', js: true do
       within('#nested-sort-fields') do
         expect(page).to have_css('h3', text: 'My Title Label')
       end
-    end # Sort field
-  end # results tab
+    end
+  end
 end

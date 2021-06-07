@@ -72,15 +72,13 @@ module Spotlight
       @tab = params[:tab]
     end
 
-    def unfold(value, key = nil)
+    def unfold(value, key = nil, &block)
       return to_enum(:unfold, value, key) unless block_given?
 
       if value.is_a? Hash
         value.each do |k, v|
           arr = unfold(v, [key, k].compact.join('.'))
-          arr.each do |k1, v1|
-            yield k1, v1
-          end
+          arr.each(&block)
         end
       else
         yield key, value

@@ -5,7 +5,7 @@ require 'i18n/backend/fallbacks'
 
 Translation = I18n::Backend::ActiveRecord::Translation
 
-if Translation.table_exists?
+if ENV.fetch('DB_ADAPTER', 'nulldb') != 'nulldb' && Translation.table_exists?
   ##
   # Sets up the new Spotlight Translation backend, backed by ActiveRecord. To
   # turn on the ActiveRecord backend, uncomment the following lines.

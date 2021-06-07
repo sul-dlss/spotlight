@@ -8,7 +8,7 @@ module Spotlight
     # filtered by the exhibit-specific solr field.
     #
     # @return [Enumerable<SolrDocument>]
-    def solr_documents
+    def solr_documents(&block)
       return to_enum(:solr_documents) unless block_given?
 
       start = 0
@@ -17,7 +17,7 @@ module Spotlight
       response = repository.search(search_params.start(start).to_h)
 
       while response.documents.present?
-        response.documents.each { |x| yield x }
+        response.documents.each(&block)
         start += response.documents.length
         response = repository.search(search_params.start(start).to_h)
       end

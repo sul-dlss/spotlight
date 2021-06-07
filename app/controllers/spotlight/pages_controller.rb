@@ -77,7 +77,7 @@ module Spotlight
       @page.lock&.delete
 
       if @page.update(page_params.merge(last_edited_by: current_user))
-        redirect_to [spotlight, @page.exhibit, @page, format: params.permit(:format)], flash: { html_safe: true }, notice: undo_notice(:updated)
+        redirect_to [spotlight, @page.exhibit, @page, { format: params.permit(:format) }], flash: { html_safe: true }, notice: undo_notice(:updated)
       else
         render action: 'edit'
       end
@@ -153,7 +153,7 @@ module Spotlight
     end
 
     def allowed_page_params
-      [:title, :content, thumbnail_attributes: featured_image_params]
+      [:title, :content, { thumbnail_attributes: featured_image_params }]
     end
 
     def human_name

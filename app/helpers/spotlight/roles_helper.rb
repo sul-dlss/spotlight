@@ -7,8 +7,8 @@ module Spotlight
     ##
     # Format the available roles for a select_tag
     def roles_for_select
-      Spotlight::Engine.config.exhibit_roles.each_with_object({}) do |key, object|
-        object[t("spotlight.role.#{key}")] = key
+      Spotlight::Engine.config.exhibit_roles.index_by do |key|
+        t("spotlight.role.#{key}")
       end
     end
   end

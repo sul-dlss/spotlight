@@ -27,7 +27,7 @@ module Spotlight
     end
 
     def initialize_browse
-      return unless searches.blank?
+      return if searches.present?
 
       searches.create title: 'All exhibit items',
                       long_description: 'All items in this exhibit.'

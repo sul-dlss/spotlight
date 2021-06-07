@@ -57,7 +57,7 @@ module Spotlight
     def validate_writable_index!
       return if Spotlight::Engine.config.writable_index
 
-      render plain: 'Spotlight is unable to write to solr', status: 409
+      render plain: 'Spotlight is unable to write to solr', status: :conflict
     end
 
     def create_or_update_solr_document_sidecar(doc, data)

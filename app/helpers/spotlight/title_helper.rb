@@ -20,11 +20,11 @@ module Spotlight
       set_html_page_title(head_content)
 
       html_content = safe_join([
-        (section if section.present?),
-        (content_tag(:small, title) if title.present?)
+        section.presence,
+        (tag.small(title) if title.present?)
       ].compact, "\n")
 
-      content_tag(:h1, html_content, class: 'page-header')
+      tag.h1(html_content, class: 'page-header')
     end
 
     # rubocop:disable Naming/AccessorMethodName

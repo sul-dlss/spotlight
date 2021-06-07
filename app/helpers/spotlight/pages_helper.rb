@@ -62,7 +62,7 @@ module Spotlight
 
     # Insert soft breaks into email addresses so they wrap nicely
     def render_contact_email_address(address)
-      mail_to address, sanitize(address).gsub(/([@\.])/, '\1<wbr />').html_safe
+      mail_to address, sanitize(address).gsub(/([@.])/, '\1<wbr />').html_safe
     end
 
     def configurations_for_current_page

@@ -7,8 +7,7 @@ module Spotlight
     include Spotlight::JobTracking
     with_job_tracking(resource: ->(job) { job.arguments[1] })
 
-    attr_reader :count
-    attr_reader :errors
+    attr_reader :count, :errors
 
     after_perform do |job|
       csv_data, exhibit, user = job.arguments
@@ -41,7 +40,7 @@ module Spotlight
 
       encoded_csv(csv_data).each do |row|
         url = row.delete('url')
-        next unless url.present?
+        next if url.blank?
 
         resource = Spotlight::Resources::Upload.new(
           data: row,

@@ -115,7 +115,7 @@ module Spotlight
     end
 
     def build_initial_exhibit_contact_emails
-      @exhibit.contact_emails.build unless @exhibit.contact_emails.present?
+      @exhibit.contact_emails.build if @exhibit.contact_emails.blank?
     end
   end
 end
