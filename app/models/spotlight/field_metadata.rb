@@ -8,12 +8,13 @@ module Spotlight
 
     include Spotlight::SearchHelper
 
-    attr_reader :exhibit, :repository, :blacklight_config
+    attr_reader :exhibit, :repository, :blacklight_config, :current_ability
 
-    def initialize(exhibit, repository, blacklight_config)
+    def initialize(exhibit, repository, blacklight_config, current_ability)
       @exhibit = exhibit
       @repository = repository
       @blacklight_config = blacklight_config
+      @current_ability = current_ability
     end
 
     def field(key)
